@@ -1,5 +1,11 @@
 from http.server import BaseHTTPRequestHandler
 import json
+# Vercel puede importar la función desde una ruta distinta a `api/`.
+# Añadimos la carpeta de este archivo para resolver el módulo hermano.
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from queue_core import GestorTurnos
 
 # Instancia por proceso de función. Para operación multi-instancia conecta Redis/Postgres.
